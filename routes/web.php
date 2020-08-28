@@ -11,14 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/pertanyaan', function () {
-    return view('pertanyaan.index');
-});
+Route::get('/', 'PertanyaanController@index');
+
+Route::resource('pertanyaan', 'PertanyaanController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/pertanyaans/create', 'pertanyaansControllers@create');
+// Route::post('/pertanyaans', 'pertanyaansControllers@store');
+// Route::get('/pertanyaans', 'pertanyaansControllers@index');
+// Route::get('/pertanyaans/{id}/edit', 'pertanyaansControllers@edit');
+// Route::put('/pertanyaans/{id}', 'pertanyaansControllers@update');
+// Route::delete('/pertanyaans/{id}', 'pertanyaansControllers@destroy');
+// Route::get('/pertanyaans/{id}', 'pertanyaansControllers@show');
