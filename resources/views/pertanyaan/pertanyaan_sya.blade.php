@@ -53,12 +53,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    Tags :
-                    @forelse ($data->tags as $tag)
-                        <a href="" class="btn btn-default">{{$tag->tag_name}}</a>
-                    @empty
-                        tidak ada tag
-                    @endforelse
+                    Tags : <a href="" class="btn btn-default">asf</a>
                 </div>
                 <!-- /.card-footer-->
             </div>

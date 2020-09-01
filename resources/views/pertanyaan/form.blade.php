@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Judul Pertanyaan</label>
-                    <input type="text" class="form-control" value="{{old('judul','')}}" name="Judul" id="exampleInputEmail1" placeholder="Judul pertanyaan">
+                    <input type="text" class="form-control" value="{{old('judul','')}}" name="judul" id="exampleInputEmail1" placeholder="Judul pertanyaan">
                     @error('judul')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -24,6 +24,11 @@
                     @error('isi')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tags</label>
+                    <input type="text" class="form-control" value="{{old('tags','')}}" name="tags" id="exampleInputEmail1" placeholder="Pisahkan tag dengan tanda koma, contoh: berita,ganteng">
                 </div>
             </div>
             <div class="card-footer">

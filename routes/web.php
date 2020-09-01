@@ -15,15 +15,17 @@
 Route::get('/', 'PertanyaanController@index');
 
 Route::resource('pertanyaan', 'PertanyaanController');
+Route::get('pertanyaansya', 'PertanyaanController@my_index');
+Route::resource('jawaban', 'JawabanController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('/pertanyaans/create', 'pertanyaansControllers@create');
-// Route::post('/pertanyaans', 'pertanyaansControllers@store');
-// Route::get('/pertanyaans', 'pertanyaansControllers@index');
-// Route::get('/pertanyaans/{id}/edit', 'pertanyaansControllers@edit');
-// Route::put('/pertanyaans/{id}', 'pertanyaansControllers@update');
-// Route::delete('/pertanyaans/{id}', 'pertanyaansControllers@destroy');
-// Route::get('/pertanyaans/{id}', 'pertanyaansControllers@show');
+// Route::get('/pertanyaan/create', 'PertanyaanController@create');
+// Route::post('/pertanyaan', 'PertanyaanController@store');
+// Route::get('/pertanyaan', 'PertanyaanController@index');
+// Route::get('/pertanyaan/{id}/edit', 'PertanyaanController@edit');
+// Route::put('/pertanyaan/{id}', 'PertanyaanController@update');
+// Route::delete('/pertanyaan/{id}', 'PertanyaanController@destroy');
+// Route::get('/pertanyaan/{id}', 'PertanyaanController@show');
