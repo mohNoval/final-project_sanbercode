@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Point;
+use App\Jawaban;
 
 class User extends Authenticatable
 {
@@ -40,5 +42,15 @@ class User extends Authenticatable
     public function pertanyaan_sya()
     {
         return $this->hasMany('App\Pertanyaan');
+    }
+
+    public function point()
+    {
+        return $this->hasMany('App\Point');
+    }
+
+    public function tepat()
+    {
+        return $this->hasOne('App\Jawaban_tepat');
     }
 }

@@ -30,44 +30,27 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-question-circle"></i>
-              <p>
-                Pertanyaan
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+          
+          <li class="nav-item">
+              <a href="\" class="nav-link">
+                  <i class="fa far fa-question-circle nav-icon"></i>
                   <p>Semua Pertanyaan</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/pertanyaansya" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pertanyaan Saya</p>
-                </a>
-              </li>
-            </ul>
+              </a>
           </li>
-            {{-- <li class="nav-item">
-                <a href="/" class="nav-link">
-                    <i class="far fa-question-circle nav-icon"></i>
-                    <p>Pertanyaan</p>
-                </a>
-            </li> --}}
             @if (Auth::user())
+            <li class="nav-item">
+                <a href="\user" class="nav-link">
+                    <i class="fa fa-user nav-icon"></i>
+                    <p>User</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="" class="nav-link">
                     <i class="fa fa-hashtag nav-icon"></i>
                     <p>Tags</p>
                 </a>
             </li>
+
             @endif
           {{-- <li class="nav-header">EXAMPLES</li> --}}
         </ul>

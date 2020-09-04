@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <section class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -16,7 +16,6 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
     @if (session('success'))
         <div class="alert alert-success">
@@ -36,29 +35,43 @@
                     </div> --}}
                 </div>
                 <div  class="card-body">
-                <div class="row">
-                    <div class="col col-md-10">
-                        <b>pertanyaan :</b><br><br>
-                        {{$data->isi}}
+                    <div class="row">
+                        <div class="col col-md-10">
+                            <b>pertanyaan :</b><br><br>
+                            {{$data->isi}}
+                        </div>
+
+                        <div class="col col-md-2 m-0 text-center">
+                            <b>Point vote : </b><br>
+                            <h4>
+                                @if (empty($data->vote->point))
+                                    0
+                                @else
+                                    {{DB::table('vote_pertanyaans')->where('pertanyaan_id', $data->id)->count()}}
+                                @endif
+                            </h4><br>
+                        </div>
+                        <small class="mt-3 ml-1 btn btn-info btn-sm">{{DB::table('jawabans')->where('pertanyaan_id', $data->id)->count()}} jawaban</small>
                     </div>
-
-                    <div class="col col-md-2 m-0 text-center">
-                        <b>Point vote : </b><br>
-                        <h4>0</h4><br>
-
-
-                    </div>
-                </div>
-                    <br><br>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    Tags :
-                    @forelse ($data->tags as $tag)
-                        <a href="" class="btn btn-default">{{$tag->tag_name}}</a>
-                    @empty
-                        tidak ada tag
-                    @endforelse
+                    <div class="row">
+                        <div class="col col-md-10">
+                            Tags :
+                            @forelse ($data->tags as $tag)
+                                <a href="" class="btn btn-default">{{$tag->tag_name}}</a>
+                            @empty
+                                tidak ada tag
+                            @endforelse
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="image">
+                                <img src="{{asset('assets/dist')}}/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" style="width: 30px"> {{$data->penanya->name}}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /.card-footer-->
             </div>

@@ -8,6 +8,8 @@ use Auth;
 use App\Pertanyaan;
 use App\Jawaban;
 use App\Tag;
+use App\vote_pertanyaan;
+use App\Jawaban_tepat;
 
 class PertanyaanController extends Controller
 {
@@ -24,7 +26,7 @@ class PertanyaanController extends Controller
     {
         $data = Pertanyaan::all();
 
-        return view('pertanyaan.index', compact('data'));
+        return view('pertanyaan.index', compact(['data']));
     }
 
     /**
@@ -54,11 +56,9 @@ class PertanyaanController extends Controller
 
         $tag_ids = [];
         foreach ($tag_arr as $tag_name) {
-            $tag = Tag::firstOrCreate('tag_name', $tag_name);
+            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
             $tag_ids[] = $tag->id;
         }
-
-
 
         $user = Auth::user();
 
@@ -86,8 +86,14 @@ class PertanyaanController extends Controller
     {
         $data = Pertanyaan::find($id);
         $jawab = Jawaban::where('pertanyaan_id', $id)->get();
-        // dd($jawab);
-        return view('pertanyaan.show', compact(['data', 'jawab']));
+        $jawaban = Jawaban_tepat::where('pertanyaan_id',$id)->first();
+        // dd($jawaban);
+        
+        $upvote = vote_pertanyaan::where('pertanyaan_id', $id)->where('user_id', Auth::user()->id)->count();
+        $count_vote = vote_pertanyaan::where('pertanyaan_id', $id)->count();
+        $count_jawaban = Jawaban::where('pertanyaan_id', $id)->count();
+
+        return view('pertanyaan.show', compact(['data', 'jawab', 'count_vote', 'count_jawaban', 'upvote','jawaban']));
     }
 
     /**
@@ -137,6 +143,9 @@ class PertanyaanController extends Controller
     public function destroy($id)
     {
         $post = DB::table('jawabans')->where('pertanyaan_id', $id)->delete();
+        $post = DB::table('pertanyaan_tag')->where('pertanyaan_id', $id)->delete();
+        $post = DB::table('vote_pertanyaans')->where('pertanyaan_id', $id)->delete();
+        $post = DB::table('downvotes')->where('pertanyaan_id', $id)->delete();
         $post = DB::table('pertanyaan')->where('id', $id)->delete();
         return redirect('/pertanyaan')->with('success', 'pertanyaan berhasil di hapus');
     }

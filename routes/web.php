@@ -11,12 +11,22 @@
 |
 */
 
+use App\Http\Controllers\PertanyaanController;
 
 Route::get('/', 'PertanyaanController@index');
 
 Route::resource('pertanyaan', 'PertanyaanController');
 Route::get('pertanyaansya', 'PertanyaanController@my_index');
+
+Route::resource('vote', 'VotePertanyaanController');
+
+Route::resource('downvote', 'DownVoteController');
+
 Route::resource('jawaban', 'JawabanController');
+
+Route::resource('user', 'UserController');
+
+Route::resource('jawaban_tepat', 'JawabanTepatController');
 
 Auth::routes();
 
